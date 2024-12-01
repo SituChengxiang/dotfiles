@@ -16,3 +16,5 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 go env -w GO111MODULE=on
 go env -w  GOPROXY=https://goproxy.io,direct
+
+export GPG_TTY=$(tty)

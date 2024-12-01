@@ -15,3 +15,5 @@ go env -w  GOPROXY=https://goproxy.io,direct
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 export LC_ALL=C
+
+export GPG_TTY=$(tty)
