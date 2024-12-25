@@ -1,167 +1,73 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
+# Alacritty GPU 加速终端模拟器配置文件
 
+# ===== 主题导入配置 =====
 # 导入额外的配置文件
-#
-# 按照列表顺序进行加载，如果文件不存在，那么会跳过。如果和先前导入的配置存在相同的字段，那么会被替换。
-# 所有的 import 路径要么使用以 `/` 开头的绝对路径，要么以用户的 HOME 目录开头 `~/`
-# import:
-#  - /path/to/alacritty.yml
+# 按照列表顺序进行加载，如果文件不存在，那么会跳过
+# 如果和先前导入的配置存在相同的字段，那么会被替换
+# 所有的 import 路径必须使用以 `/` 开头的绝对路径，或以用户的 HOME 目录开头 `~/`
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/afterglow.toml"  # 使用 afterglow 主题
+]
 
-# ----------颜色设置----------- Afterglow主题
-[colors]
-draw_bold_text_with_bright_colors = true
-
-[colors.bright]
-black = "#7f7061"
-blue = "#82aaff"
-cyan = "#89ddff"
-green = "#c3e88d"
-magenta = "#c792ea"
-red = "#ff5370"
-white = "#ffffff"
-yellow = "#ffcb6b"
-
-[colors.normal]
-black = "#384048"
-blue = "#82aaff"
-cyan = "#89ddff"
-green = "#c3e88d"
-magenta = "#c792ea"
-red = "#ff5370"
-white = "#d0d0d0"
-yellow = "#ffcb6b"
-
-[colors.primary]
-background = "#2c2c2c"
-foreground = "#d0d0d0"
-
-# --- 颜色设置完 ---------
-# --- 光标配置 -----
-
-    # 可以为下面的值:
-    #   - ▇ Block
-    #   - _ Underline
-    #   - | Beam
-
+# ===== 光标配置 =====
 [cursor.style]
-shape = "Beam"
+shape = "Beam"  # 光标形状：Block(方块) | Underline(下划线) | Beam(竖线)
 
-    # 光标闪烁状态
-    #
-    # 可以为下面的值:
-    #   - Never: Prevent the cursor from ever blinking
-    #   - Off: Disable blinking by default
-    #   - On: Enable blinking by default
-    #   - Always: Force the cursor to always blink
+# 光标闪烁配置
+# Never:  禁止光标闪烁
+# Off:    默认关闭闪烁
+# On:     默认开启闪烁
+# Always: 强制光标始终闪烁
 blinking = "On"
 
+# ===== 字体配置 =====
 [font]
-size = 14.0
+size = 12.0  # 字体大小
 
 [font.bold]
-family = "JetBrainsMono Nerd Font Propo"
-style = "Regular"
+family = "JetBrainsMono Nerd Font Propo"  # 粗体字体
+style = "Regular"  # 粗体样式
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font Propo"
-style = "Italic"
+family = "JetBrainsMono Nerd Font Propo"  # 粗斜体字体
+style = "Demi Bold Italic"  # 粗斜体样式
 
 [font.glyph_offset]
-x = 0
-y = 1
+x = 0  # 字形水平偏移
+y = 1  # 字形垂直偏移
 
 [font.italic]
-family = "JetBrainsMono Nerd Font Propo"
-style = "Italic"
+family = "JetBrainsMono Nerd Font Propo"  # 斜体字体
+style = "Italic"  # 斜体样式
 
 [font.normal]
-family = "JetBrainsMono Nerd Font Propo"
-style = "Regular"
+family = "JetBrainsMono Nerd Font Propo"  # 常规字体
+style = "Regular"  # 常规样式
 
 [font.offset]
-x = 0
-y = 1
+x = 0  # 字体整体水平偏移
+y = 1  # 字体整体垂直偏移
 
-[[keyboard.bindings]]
-chars = "\f"
-key = "R"
-mode = "~Vi|~Search"
-mods = "Command"
-
-[[keyboard.bindings]]
-action = "ClearHistory"
-key = "R"
-mode = "~Vi|~Search"
-mods = "Command"
-
-[[keyboard.bindings]]
-action = "Hide"
-key = "W"
-mods = "Command"
-
-[[keyboard.bindings]]
-action = "Quit"
-key = "W"
-mods = "Command|Shift"
-
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "N"
-mods = "Command"
-
-[[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "T"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u001Bb"
-key = "Left"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001Bf"
-key = "Right"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u0001"
-key = "Left"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0005"
-key = "Right"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0015"
-key = "Back"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u001B\u007F"
-key = "Back"
-mods = "Alt"
-
+# ===== 滚动配置 =====
 [scrolling]
-history = 100000
-multiplier = 4
+history = 100000  # 历史记录保留行数
+multiplier = 4    # 滚动速度倍数
 
+# ===== 选择文本配置 =====
 [selection]
-save_to_clipboard = true
-semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+save_to_clipboard = true  # 选中文本自动复制到剪贴板
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"  # 双击选中文本时的分隔符
 
+# ===== 窗口配置 =====
 [window]
-decorations = "transparent"
+decorations = "transparent"  # 窗口装饰风格：透明
+opacity = 0.7    # 窗口透明度：0.0 完全透明, 1.0 完全不透明
 
 [window.dimensions]
-columns = 80
-lines = 25
+columns = 80     # 默认窗口列数
+lines = 25       # 默认窗口行数
 
 [window.padding]
-x = 22
-y = 22
-
-[general]
-live_config_reload = true
+x = 22           # 窗口水平内边距
+y = 22           # 窗口垂直内边距
