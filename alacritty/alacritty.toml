@@ -1,51 +1,62 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
 
+# 导入额外的配置文件
+#
+# 按照列表顺序进行加载，如果文件不存在，那么会跳过。如果和先前导入的配置存在相同的字段，那么会被替换。
+# 所有的 import 路径要么使用以 `/` 开头的绝对路径，要么以用户的 HOME 目录开头 `~/`
+# import:
+#  - /path/to/alacritty.yml
+
+# ----------颜色设置----------- Afterglow主题
 [colors]
-draw_bold_text_with_bright_colors = false
+draw_bold_text_with_bright_colors = true
 
 [colors.bright]
-black = "#4d4d4d"
-blue = "#a277ff"
-cyan = "#61ffca"
-green = "#61ffca"
-magenta = "#a277ff"
-red = "#ff6767"
-white = "#edecee"
-yellow = "#ffca85"
-
-[colors.cursor]
-cursor = "#00D1FF"
+black = "#7f7061"
+blue = "#82aaff"
+cyan = "#89ddff"
+green = "#c3e88d"
+magenta = "#c792ea"
+red = "#ff5370"
+white = "#ffffff"
+yellow = "#ffcb6b"
 
 [colors.normal]
-black = "#110f18"
-blue = "#a277ff"
-cyan = "#61ffca"
-green = "#61ffca"
-magenta = "#a277ff"
-red = "#ff6767"
-white = "#edecee"
-yellow = "#ffca85"
+black = "#384048"
+blue = "#82aaff"
+cyan = "#89ddff"
+green = "#c3e88d"
+magenta = "#c792ea"
+red = "#ff5370"
+white = "#d0d0d0"
+yellow = "#ffcb6b"
 
 [colors.primary]
-background = "#15141b"
-foreground = "#edecee"
+background = "#2c2c2c"
+foreground = "#d0d0d0"
 
-[colors.search.focused_match]
-background = "#00D1FF"
-foreground = "#ffffff"
+# --- 颜色设置完 ---------
+# --- 光标配置 -----
 
-[colors.search.matches]
-background = "#ffffff"
-foreground = "#000000"
-
-[colors.selection]
-background = "#29263c"
-text = "CellForeground"
+    # 可以为下面的值:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
 
 [cursor.style]
 shape = "Beam"
 
+    # 光标闪烁状态
+    #
+    # 可以为下面的值:
+    #   - Never: Prevent the cursor from ever blinking
+    #   - Off: Disable blinking by default
+    #   - On: Enable blinking by default
+    #   - Always: Force the cursor to always blink
+blinking = "On"
+
 [font]
-size = 17.0
+size = 14.0
 
 [font.bold]
 family = "JetBrainsMono Nerd Font Propo"
