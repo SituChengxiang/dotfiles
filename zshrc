@@ -7,6 +7,7 @@ fi
 
 export RUSTUP_UPDATE_ROOT=https://mirrors.aliyun.com/rustup/rustup
 export RUSTUP_DIST_SERVER=https://mirrors.aliyun.com/rustup
+
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
@@ -18,3 +19,7 @@ go env -w GO111MODULE=on
 go env -w  GOPROXY=https://goproxy.io,direct
 
 export GPG_TTY=$(tty)
+
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
