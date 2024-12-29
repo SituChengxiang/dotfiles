@@ -49,4 +49,4 @@ export GPG_TTY=$(tty)
 shopt -s autocd
 shopt -s histappend
 HISTSIZE=1000
-HISTFILESIZE=2000
+HISTFILESIZE=2000[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
