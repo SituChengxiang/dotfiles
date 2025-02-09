@@ -51,7 +51,7 @@ eval "$(fnm env --use-on-cd)"
 export GPG_TTY=$(tty)
 
 # 启用一些有用的 bash 选项
-shopt -s autocd
-shopt -s histappend
+# shopt -s autocd
+# shopt -s histappend
 HISTSIZE=1000
-HISTFILESIZE=2000[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+# HISTFILESIZE=2000[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
