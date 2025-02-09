@@ -36,6 +36,11 @@ export LC_ALL=C
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.io,direct
 
+export GOROOT=/usr/lib/go
+export GOPATH=/home/kuan/go
+export GOBIN=/home/kuan/go/bin
+export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+
 # GPG 配置
 export GPG_TTY=$(tty)
 

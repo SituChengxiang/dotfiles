@@ -25,6 +25,11 @@ PS1='[\u@\h \W]\$ '
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.io,direct
 
+export GOROOT=/usr/lib/go
+export GOPATH=/home/kuan/go
+export GOBIN=/home/kuan/go/bin
+export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+
 # Rust 镜像配置
 export RUSTUP_UPDATE_ROOT=https://mirrors.aliyun.com/rustup/rustup
 export RUSTUP_DIST_SERVER=https://mirrors.aliyun.com/rustup
