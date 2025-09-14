@@ -11,6 +11,8 @@ export COLORTERM=truecolor                # 启用真彩色支持
 export WINIT_X11_SCALE_FACTOR=1.0        # X11 缩放因子
 export WINIT_HIDPI_FACTOR=1.0            # HiDPI 缩放
 
+export LC_ALL=zh_CN.UTF-8
+
 # 如果使用 NVIDIA 独显，可能需要以下配置
 export LIBGL_ALWAYS_SOFTWARE=1            # 使用软件渲染以避免某些图形问题
 
@@ -45,7 +47,7 @@ export FNM_DIR="/opt/node/versions"
 export FNM_NODE_DIST_MIRROR="https://mirrors.cloud.tencent.com/nodejs-release/"
 
 # 初始化 fnm
-eval "$(fnm env --use-on-cd)"
+# eval "$(fnm env --use-on-cd)"
 
 # GPG 配置
 export GPG_TTY=$(tty)
@@ -55,3 +57,21 @@ export GPG_TTY=$(tty)
 # shopt -s histappend
 HISTSIZE=1000
 # HISTFILESIZE=2000[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

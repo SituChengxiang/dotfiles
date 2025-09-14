@@ -11,6 +11,8 @@ export COLORTERM=truecolor                # 启用真彩色支持
 export WINIT_X11_SCALE_FACTOR=1.0        # X11 缩放因子（如果需要）
 export WINIT_HIDPI_FACTOR=1.0            # HiDPI 缩放（如果需要）
 
+export LC_ALL=zh_CN.UTF-8
+
 # 如果使用 NVIDIA 独显，可能需要以下配置
 export LIBGL_ALWAYS_SOFTWARE=1            # 使用软件渲染以避免某些图形问题
 
@@ -50,11 +52,11 @@ bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 
 # fnm 配置
-export FNM_DIR="/opt/node/versions"
-export FNM_NODE_DIST_MIRROR="https://mirrors.cloud.tencent.com/nodejs-release/"
+# export FNM_DIR="/opt/node/versions"
+# export FNM_NODE_DIST_MIRROR="https://mirrors.cloud.tencent.com/nodejs-release/"
 
 # 初始化 fnm
-eval "$(fnm env --use-on-cd)"
+# eval "$(fnm env --use-on-cd)"
 
 # zsh 选项设置
 setopt AUTO_CD
@@ -64,3 +66,6 @@ HISTFILE=~/.zsh_history
 # zsh 补全系统
 autoload -Uz compinit && compinit
 
+# HISTFILESIZE=2000[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
