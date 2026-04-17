@@ -31,16 +31,13 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# 设置语言环境
-export LC_ALL=C
-
 # Go 环境配置
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.io,direct
 
 export GOROOT=/usr/lib/go
-export GOPATH=/home/kuan/go
-export GOBIN=/home/kuan/go/bin
+export GOPATH=/home/kuan/.go
+export GOBIN=/home/kuan/.go/bin
 export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 
 # GPG 配置
@@ -69,3 +66,14 @@ autoload -Uz compinit && compinit
 # HISTFILESIZE=2000[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+
+# 个别path配置
+export export PATH="/home/kuan/.local/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/kuan/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

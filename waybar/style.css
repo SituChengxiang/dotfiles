@@ -1,137 +1,130 @@
+@define-color taskbar_bg rgba(32, 32, 32, 0.33);
+@define-color taskbar_border rgba(255, 255, 255, 0.08);
+@define-color text_main #f3f3f3;
+@define-color text_dim #c8c8c8;
+@define-color hover_bg rgba(255, 255, 255, 0.12);
+@define-color active_accent #2aa2ff;
+@define-color urgent_accent #d13438;
+@define-color panel_bg rgba(26, 26, 26, 0.95);
+
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "JetBrainsMono Nerd Font Mono", "Font Awesome 6 Free";
-    font-weight: 300;
-    font-size: 14px;
+    font-family: "Segoe UI", "Noto Sans CJK SC", "Noto Sans", "Font Awesome 6 Free";
+    font-weight: 400;
+    font-size: 13px;
     text-shadow: none;
-    
-    transition-property: background;
-    transition-duration: 0.2s;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 window#waybar {
-    /* Large size for shorter side padding*/
-    /* border-radius: 100px; */
-    /* margin: 6px; */
-    background-color: rgba(0, 0, 0, 0.5);
+    background: @taskbar_bg;
+    color: @text_main;
+    border-top: 1px solid @taskbar_border;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+    opacity: 0.95;
 }
 
 tooltip {
-    background-color: rgba(18, 18, 18, 0.8);
-    border: 1px solid rgba(34, 34, 34, 0.5);
-    border-radius: 15px;
+    background: @panel_bg;
+    color: @text_main;
+    border: 1px solid @taskbar_border;
 }
 
-#clock,
-#cpu,
-#memory,
-#network,
-#battery,
-#pulseaudio,
-#tray,
-#mode,
+.modules-left,
+.modules-right {
+    margin: 0;
+    padding: 0;
+}
+
+#custom-launcher,
+#workspaces,
 #window,
-#workspaces {
-    border-radius: 100px;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    padding: 0 12px;
+#tray,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#clock {
+    margin: 0;
+    padding: 0 10px;
+    min-height: 36px;
+    color: @text_main;
+}
+
+#custom-launcher {
+    min-width: 42px;
+    padding: 0;
+    font-size: 16px;
+    color: #ffffff;
+    background: transparent;
+}
+
+#custom-launcher:hover {
+    background: @hover_bg;
 }
 
 #workspaces {
-    /* border: rgba(255, 255, 255, 0.2) solid 2px; */
-    padding: 3px;
-	background: rgb(18, 18, 18);
-	transition: none;
-
-    font-size: 12px;
-}
-
-#workspaces :first-child {
-    margin-left: 0;
+    background: transparent;
+    padding: 0;
 }
 
 #workspaces button {
-    border-radius: 15px;
-    border: none;
-    padding: 0 6px;
+    min-width: 20px;
+    padding: 0 12px;
+    margin: 0;
     background: transparent;
-    color: #ffffff;
-    margin-left: 3px;
+    color: @text_dim;
+    border-bottom: 2px solid transparent;
 }
 
 #workspaces button:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-#workspaces button.empty {
-    color: rgba(255, 255, 255, 0.25);
+    background: @hover_bg;
+    color: @text_main;
 }
 
 #workspaces button.active {
-    background: #ffffff;
-    color: #2f2f2f;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-bottom: 2px solid @active_accent;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    color: #ffffff;
+    border-bottom: 2px solid @urgent_accent;
 }
 
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > * {
-    margin-left: 6px;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > * {
-    margin-right: 6px;
-}
-
-#clock {
-    background-color: #91b0f1;
-    color: #000000;
-}
-
-#cpu {
-    background-color: #aafcbd;
-    color: #000000;
-}
-
-#battery {
-    background-color: #91cff8;
-    color: #000000;
-}
-
-#memory {
-    background-color: #ffeaaa;
-    color: #000000;
-}
-
-#pulseaudio {
-    background-color: #fea4a4;
-    color: #000000;
-}
-
-#network {
-    background-color: #f1c4a6;
-    color: #000000;
-}
-
-#tray {
-    /* border: rgba(255, 255, 255, 0.2) solid 2px; */
-    background-color: transparent;
+#workspaces button.empty {
+    color: #8c8c8c;
 }
 
 #window {
-    background-color: #d3e4c9;
-    color: #000000;
+    color: #e5e5e5;
+    padding-left: 12px;
+}
+
+#tray,
+#pulseaudio,
+#memory,
+#cpu,
+#battery {
+    color: #ededed;
+}
+
+#clock {
+    min-width: 120px;
+    padding: 0 14px;
+    background: rgba(32, 32, 32, 0.33)
+}
+
+#clock:hover,
+#tray:hover,
+#pulseaudio:hover,
+#memory:hover,
+#cpu:hover,
+#battery:hover {
+    background: @hover_bg;
 }

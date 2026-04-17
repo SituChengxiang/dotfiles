@@ -39,8 +39,6 @@ export RUSTUP_DIST_SERVER=https://mirrors.aliyun.com/rustup
 # 启用 autojump
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
-# 设置语言环境
-export LC_ALL=C
 
 # fnm 配置
 export FNM_DIR="/opt/node/versions"
@@ -74,4 +72,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+
 

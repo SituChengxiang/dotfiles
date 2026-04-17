@@ -1,17 +1,23 @@
 {
     "layer": "top",
     "position": "top",
-    "spacing": 6,
+    "spacing": 0,
     "margin-top": 0,
     "margin-left": 0,
     "margin-right": 0,
     "margin-bottom": 0,
-    "height": 42,
-    "modules-left": ["hyprland/window"],
-    "modules-center": ["hyprland/workspaces"],
+    "height": 35,
+    "modules-left": ["custom/launcher", "hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
     "modules-right": ["tray", "pulseaudio", "memory","cpu", "battery", "clock"],
+    "custom/launcher": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wofi --show drun"
+    },
     "hyprland/workspaces": {
         "format": "{name}",
+        "sort-by-number": true,
         "persistent-workspaces": {
             "*": 10
         },
@@ -20,7 +26,8 @@
         "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
     "hyprland/window": {
-        "format": "\uf061 {initialTitle}",
+        "format": "{initialTitle}",
+        "max-length": 80,
         "separate-outputs": true
     },
     "tray": {
@@ -29,9 +36,10 @@
     },
     "clock": {
         "interval": 1,
-        "format": "\uf017 {:%H:%M:%S}",
-        "format-alt": "\uf133 {:%Y-%m-%d %H:%M:%S}",
+        "format": "\uf133 {:%Y-%m-%d %H:%M:%S}",
+        "format-alt": "\uf017 {:%H:%M:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"on-click": "sh -c 'if command -v gsimplecal >/dev/null 2>&1; then gsimplecal; elif command -v zenity >/dev/null 2>&1; then zenity --calendar --title=Calendar --width=260 --height=220; fi'",
 		"timezone": "Asia/Chongqing",
         "calendar": {
             "mode"          : "month",
@@ -82,7 +90,7 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": [" ", " ", " ", " ", " "],
         "max-length": 6,
         "min-length": 6
     },
