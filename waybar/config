@@ -36,10 +36,8 @@
     },
     "clock": {
         "interval": 1,
-        "format": "\uf133 {:%Y-%m-%d %H:%M:%S}",
-        "format-alt": "\uf017 {:%H:%M:%S}",
+        "format": "{:%Y-%m-%d %H:%M:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
-		"on-click": "sh -c 'if command -v gsimplecal >/dev/null 2>&1; then gsimplecal; elif command -v zenity >/dev/null 2>&1; then zenity --calendar --title=Calendar --width=260 --height=220; fi'",
 		"timezone": "Asia/Chongqing",
         "calendar": {
             "mode"          : "month",
@@ -96,7 +94,7 @@
     },
     "pulseaudio": {
         "scroll-step": 5,
-        "format": "{icon} {volume:2}%",
+        "format": "{icon}   {volume:2}%",
         "format-muted": "\uf6a9",
         "format-bluetooth": "{icon}\uf294 {volume}%",
         "format-bluetooth-muted": "\ufa69 {icon}\uf294",

@@ -1,0 +1,6 @@
+[Unit]
+Description=Apply time-based GTK and KDE theme
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash %h/.config/hypr/scripts/theme-switch auto

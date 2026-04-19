@@ -1,0 +1,12 @@
+[Unit]
+Description=Run theme switch at login and at 06:30/18:30
+
+[Timer]
+OnBootSec=1min
+OnCalendar=*-*-* 06:30:00
+OnCalendar=*-*-* 18:30:00
+Persistent=true
+Unit=theme-switch.service
+
+[Install]
+WantedBy=timers.target

@@ -1,60 +1,72 @@
 /** ********** Fonts ********** **/
+@define-color wofi_bg rgba(30, 30, 46, 0.78);
+@define-color wofi_panel rgba(38, 38, 54, 0.88);
+@define-color wofi_panel_soft rgba(38, 38, 54, 0.55);
+@define-color wofi_border rgba(217, 224, 238, 0.14);
+@define-color wofi_text rgba(217, 224, 238, 0.96);
+@define-color wofi_text_dim rgba(217, 224, 238, 0.72);
+@define-color wofi_accent rgba(137, 180, 250, 0.95);
+@define-color wofi_accent_soft rgba(137, 180, 250, 0.20);
+
 * {
     font-family: "JetBrains Mono", "MiSans";
     font-size: 12px;
 }
 
 #window {
-background-color: --wofi-color0;
-color: --wofi-color2;
-border: 2px solid --wofi-color1;
-border-radius: 0px;
+    background-color: @wofi_bg;
+    color: @wofi_text;
+    border: 1px solid @wofi_border;
+    border-radius: 1px;
 }
 
 #outer-box {
-padding: 20px;
+    padding: 15px;
 }
 
 #input {
-background-color: --wofi-color1;
-border: 0px solid --wofi-color3;
-padding: 8px 12px;
+    background-color: @wofi_panel;
+    color: @wofi_text;
+    border: 1px solid @wofi_border;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    border-radius: 2px;
+}
+
+#input:focus {
+    border: 1px solid @wofi_accent;
 }
 
 #scroll {
-margin-top: 20px;
-}
-
-#inner-box {
+    margin-top: 4px;
 }
 
 #img {
-padding-right: 8px;
+    padding-right: 10px;
 }
 
 #text {
-color: --wofi-color2;
-}
-
-#text:selected {
-color: --wofi-color0;
+    color: @wofi_text;
 }
 
 #entry {
-padding: 6px;
+    padding: 10px 12px;
+    margin: 2px 0;
+    border-radius: 14px;
+    background-color: transparent;
+}
+
+#entry:hover {
+    background-color: @wofi_panel_soft;
 }
 
 #entry:selected {
-background-color: --wofi-color3;
-color: --wofi-color0;
+    background-color: @wofi_accent_soft;
+    color: @wofi_text;
+    border: 1px solid rgba(137, 180, 250, 0.28);
 }
 
-#unselected {
+#entry:selected #text {
+    color: @wofi_text;
 }
 
-#selected {
-}
-
-#input, #entry:selected {
-border-radius: 4px;
-}

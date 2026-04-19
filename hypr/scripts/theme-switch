@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mode="${1:-auto}"
+current_minutes=$((10#$(date +%H%M)))
+
+is_hyprland_session() {
+    if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+        return 0
+    fi
+
+    if [[ "${XDG_CURRENT_DESKTOP:-}" == *Hyprland* ]] || [[ "${XDG_SESSION_DESKTOP:-}" == Hyprland ]]; then
+        return 0
+    fi
+
+    pgrep -xu "${USER}" Hyprland >/dev/null 2>&1
+}
+
+resolve_mode() {
+    case "$mode" in
+        dark|light)
+            printf '%s\n' "$mode"
+            ;;
+        auto)
+            if (( current_minutes >= 1830 || current_minutes < 630 )); then
+                printf 'dark\n'
+            else
+                printf 'light\n'
+            fi
+            ;;
+        *)
+            printf 'Usage: %s [auto|dark|light]\n' "$0" >&2
+            exit 2
+            ;;
+    esac
+}
+
+apply_gtk_theme() {
+    local gtk_mode="$1"
+    local gtk_theme gtk_icon gtk_prefer_dark
+
+    if [[ "$gtk_mode" == dark ]]; then
+        gtk_theme="Breeze-Dark"
+        gtk_icon="breeze-dark"
+        gtk_prefer_dark="true"
+    else
+        gtk_theme="Breeze"
+        gtk_icon="breeze"
+        gtk_prefer_dark="false"
+    fi
+
+    python3 - "$HOME/.config/gtk-3.0/settings.ini" "$HOME/.config/gtk-4.0/settings.ini" "$gtk_theme" "$gtk_icon" "$gtk_prefer_dark" <<'PY'
+from pathlib import Path
+import sys
+
+paths = [Path(sys.argv[1]), Path(sys.argv[2])]
+gtk_theme = sys.argv[3]
+gtk_icon = sys.argv[4]
+gtk_prefer_dark = sys.argv[5]
+
+updates = {
+    "gtk-theme-name": gtk_theme,
+    "gtk-icon-theme-name": gtk_icon,
+    "gtk-application-prefer-dark-theme": gtk_prefer_dark,
+}
+
+for path in paths:
+    if not path.exists():
+        continue
+
+    lines = path.read_text(encoding="utf-8").splitlines()
+    output = []
+    seen = {key: False for key in updates}
+
+    for line in lines:
+        stripped = line.strip()
+        replaced = False
+        for key, value in updates.items():
+            if stripped.startswith(f"{key}="):
+                output.append(f"{key}={value}")
+                seen[key] = True
+                replaced = True
+                break
+        if not replaced:
+            output.append(line)
+
+    for key, value in updates.items():
+        if not seen[key]:
+            output.append(f"{key}={value}")
+
+    path.write_text("\n".join(output) + "\n", encoding="utf-8")
+PY
+}
+
+apply_kde_theme() {
+    local kde_mode="$1"
+    local kde_scheme gsettings_scheme
+
+    if [[ "$kde_mode" == dark ]]; then
+        kde_scheme="BreezeDark"
+        gsettings_scheme="prefer-dark"
+    else
+        kde_scheme="BreezeLight"
+        gsettings_scheme="default"
+    fi
+
+    if command -v plasma-apply-colorscheme >/dev/null 2>&1; then
+        plasma-apply-colorscheme "$kde_scheme" >/dev/null 2>&1 || true
+    fi
+
+    if command -v kwriteconfig6 >/dev/null 2>&1; then
+        kwriteconfig6 --file kdeglobals --group General --key ColorScheme "$kde_scheme" >/dev/null 2>&1 || true
+    fi
+
+    if command -v gsettings >/dev/null 2>&1; then
+        gsettings set org.gnome.desktop.interface color-scheme "$gsettings_scheme" >/dev/null 2>&1 || true
+    fi
+}
+
+mode="$(resolve_mode)"
+if ! is_hyprland_session; then
+    exit 0
+fi
+
+apply_kde_theme "$mode"
+apply_gtk_theme "$mode"
