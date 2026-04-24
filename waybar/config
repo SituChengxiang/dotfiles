@@ -6,9 +6,9 @@
     "margin-left": 0,
     "margin-right": 0,
     "margin-bottom": 0,
-    "height": 35,
+    "height": 36,
     "modules-left": ["custom/launcher", "hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
+    "modules-center": ["hyprland/workspaces#taskbar"],
     "modules-right": ["tray", "pulseaudio", "memory","cpu", "battery", "clock"],
     "custom/launcher": {
         "format": "",
@@ -25,18 +25,27 @@
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
-    "hyprland/window": {
-        "format": "{initialTitle}",
-        "max-length": 80,
-        "separate-outputs": true
+    "hyprland/workspaces#taskbar": {
+        "active-only": true,
+        "format": "{windows}",
+        "format-window-separator": "",
+        "all-outputs": false,
+        "workspace-taskbar": {
+            "enable": true,
+            "update-active-window": true,
+            "format": "{icon}",
+            "icon-size": 24,
+            "orientation": "horizontal",
+            "on-click-window": "hyprctl dispatch focuswindow address:{address}"
+        }
     },
     "tray": {
-        "icon-size":16 ,
+        "icon-size":18,
         "spacing": 10
     },
     "clock": {
         "interval": 1,
-        "format": "{:%Y-%m-%d %H:%M:%S}",
+        "format": "{:%Y/%m/%d %H:%M:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
 		"timezone": "Asia/Chongqing",
         "calendar": {
@@ -62,7 +71,7 @@
     },
     "cpu": {
         "interval": 1,
-        "format": "\uf2db {usage:2}%",
+        "format": "<span font_family='Font Awesome 7 Free' weight='900'>\uf2db</span> {usage:2}%",
         "tooltip": true
     },
     "memory": {
@@ -88,18 +97,28 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-icons": [" ", " ", " ", " ", " "],
-        "max-length": 6,
-        "min-length": 6
+        "format-icons": [
+            "<span font_family='Font Awesome 7 Free' weight='900'>\uf244</span>",
+            "<span font_family='Font Awesome 7 Free' weight='900'>\uf243</span>",
+            "<span font_family='Font Awesome 7 Free' weight='900'>\uf242</span>",
+            "<span font_family='Font Awesome 7 Free' weight='900'>\uf241</span>",
+            "<span font_family='Font Awesome 7 Free' weight='900'>\uf240</span>"
+        ],
+        "max-length": 7,
+        "min-length": 7
     },
     "pulseaudio": {
         "scroll-step": 5,
-        "format": "{icon}   {volume:2}%",
-        "format-muted": "\uf6a9",
-        "format-bluetooth": "{icon}\uf294 {volume}%",
-        "format-bluetooth-muted": "\ufa69 {icon}\uf294",
+        "format": "{icon} {volume:2}%",
+        "format-muted": "<span font_family='Font Awesome 7 Free' weight='900'>\uf6a9</span>",
+        "format-bluetooth": "{icon}<span font_family='Font Awesome 7 Free' weight='900'>\uf294</span> {volume}%",
+        "format-bluetooth-muted": "<span font_family='Font Awesome 7 Free' weight='900'>\ufa69</span> {icon}<span font_family='Font Awesome 7 Free' weight='900'>\uf294</span>",
         "format-icons": {
-            "default": ["\uf026", "\uf027", "\uf028"]
+            "default": [
+                "<span font_family='Font Awesome 7 Free' weight='900'>\uf026</span>",
+                "<span font_family='Font Awesome 7 Free' weight='900'>\uf027</span>",
+                "<span font_family='Font Awesome 7 Free' weight='900'>\uf028</span>"
+            ]
         },
         "on-click-right": "pavucontrol",
         "ignored-sinks": ["AudioRelay Virtual Sink", "Recorder Sink"]

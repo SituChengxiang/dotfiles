@@ -8,36 +8,40 @@
 @define-color panel_bg rgba(26, 26, 26, 0.95);
 
 * {
-    font-family: "Segoe UI", "Noto Sans CJK SC", "Noto Sans", "Font Awesome 6 Free";
-    font-weight: 400;
-    font-size: 13px;
-    text-shadow: none;
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    transition: background-color 0.15s ease, color 0.15s ease;
+  font-family:
+    "JetBrainsMono Nerd Font Mono", "MiSans", "Noto Sans CJK SC",
+    "Font Awesome 6 Free";
+  font-weight: 400;
+  font-size: 13px;
+  text-shadow: none;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 window#waybar {
-    background: @taskbar_bg;
-    color: @text_main;
-    border-top: 1px solid @taskbar_border;
+  background: @taskbar_bg;
+  color: @text_main;
+  border-top: 1px solid @taskbar_border;
 }
 
 window#waybar.hidden {
-    opacity: 0.95;
+  opacity: 0.95;
 }
 
 tooltip {
-    background: @panel_bg;
-    color: @text_main;
-    border: 1px solid @taskbar_border;
+  background: @panel_bg;
+  color: @text_main;
+  border: 1px solid @taskbar_border;
 }
 
 .modules-left,
 .modules-right {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #custom-launcher,
@@ -49,61 +53,102 @@ tooltip {
 #cpu,
 #battery,
 #clock {
-    margin: 0;
-    padding: 0 10px;
-    min-height: 36px;
-    color: @text_main;
+  margin: 0;
+  padding: 0 10px;
+  min-height: 36px;
+  color: @text_main;
 }
 
 #custom-launcher {
-    min-width: 42px;
-    padding: 0;
-    font-size: 16px;
-    color: #ffffff;
-    background: transparent;
+  min-width: 42px;
+  padding: 0;
+  font-size: 16px;
+  color: #ffffff;
+  background: transparent;
 }
 
 #custom-launcher:hover {
-    background: @hover_bg;
+  background: @hover_bg;
 }
 
 #workspaces {
-    background: transparent;
-    padding: 0;
+  background: transparent;
+  padding: 0;
 }
 
 #workspaces button {
-    min-width: 20px;
-    padding: 0 12px;
-    margin: 0;
-    background: transparent;
-    color: @text_dim;
-    border-bottom: 2px solid transparent;
+  min-width: 20px;
+  padding: 0 12px;
+  margin: 0;
+  background: transparent;
+  color: @text_dim;
+  border-bottom: 2px solid transparent;
 }
 
 #workspaces button:hover {
-    background: @hover_bg;
-    color: @text_main;
+  background: @hover_bg;
+  color: @text_main;
 }
 
 #workspaces button.active {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-    border-bottom: 2px solid @active_accent;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-bottom: 2px solid @active_accent;
 }
 
 #workspaces button.urgent {
-    color: #ffffff;
-    border-bottom: 2px solid @urgent_accent;
+  color: #ffffff;
+  border-bottom: 2px solid @urgent_accent;
 }
 
 #workspaces button.empty {
-    color: #8c8c8c;
+  color: #8c8c8c;
+}
+
+/* Keep taskbar buttons as small square cells. */
+#workspaces.taskbar button {
+  min-width: 36px;
+  min-height: 35px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+}
+
+#workspaces.taskbar .taskbar-window {
+  min-width: 35px;
+  min-height: 35px;
+  padding: 0px 0px 0px 11px;
+  background: transparent;
+  /* border-top: 1px solid transparent; */
+  border-bottom: 2px solid transparent;
+}
+
+#workspaces.taskbar .taskbar-window.active {
+  min-width: 35px;
+  min-height: 35px;
+  padding: 0px 0px 0px 11px;
+  background: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+  border-bottom: 2px solid @active_accent;
+}
+
+/* Keep generic active style off for center taskbar instance. */
+#workspaces.taskbar button.active {
+  background: transparent;
+  border-bottom: 2px solid transparent;
+}
+
+/* Suppress active highlight in center taskbar when current workspace has no windows. */
+#workspaces.taskbar button.empty.active {
+  background: transparent;
+  border-bottom: 2px solid transparent;
 }
 
 #window {
-    color: #e5e5e5;
-    padding-left: 12px;
+  color: #e5e5e5;
+  padding-left: 12px;
 }
 
 #tray,
@@ -111,13 +156,13 @@ tooltip {
 #memory,
 #cpu,
 #battery {
-    color: #ededed;
+  color: #ededed;
 }
 
 #clock {
-    min-width: 120px;
-    padding: 0 14px;
-    background: rgba(32, 32, 32, 0.33)
+  min-width: 120px;
+  padding: 0 14px;
+  background: rgba(32, 32, 32, 0.33);
 }
 
 #clock:hover,
@@ -126,5 +171,5 @@ tooltip {
 #memory:hover,
 #cpu:hover,
 #battery:hover {
-    background: @hover_bg;
+  background: @hover_bg;
 }

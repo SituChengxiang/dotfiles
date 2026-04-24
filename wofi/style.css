@@ -9,7 +9,7 @@
 @define-color wofi_accent_soft rgba(137, 180, 250, 0.20);
 
 * {
-    font-family: "JetBrains Mono", "MiSans";
+    font-family: "JetBrainsMono", "MiSans";
     font-size: 12px;
 }
 
